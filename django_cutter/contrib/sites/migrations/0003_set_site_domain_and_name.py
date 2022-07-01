@@ -51,8 +51,8 @@ def update_site_backward(apps, schema_editor):
     _update_or_create_site_with_sequence(
         Site,
         schema_editor.connection,
-        "example.com",
-        "example.com",
+        "mail.com",
+        "mail.com",
     )
 
 
