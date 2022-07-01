@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=django_cutter
+POSTGRES_USER=RAedbwRoqhEHzCGwVPszAxobVCnJukov
+POSTGRES_PASSWORD=PWtvtWTIqY4jlxzh9trjS4eN9jM0EgQPUqUMm8IyHhxuhnFuHVGuWxMzUMo19II0
