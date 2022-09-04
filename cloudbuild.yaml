@@ -1,0 +1,27 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-f",
+        "compose/production/django/Dockerfile",
+        "-t",
+        "gcr.io/djangocutter-341220/djangocutter:latest",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/djangocutter-341220/djangocutter:latest"]
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "djangocutter",
+        "--image",
+        "gcr.io/djangocutter-341220/djangocutter:latest",
+        "--region",
+        "europe-west4",
+      ]
+images:
+  - gcr.io/djangocutter-341220/djangocutter:latest
