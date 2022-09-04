@@ -4,7 +4,7 @@ steps:
       [
         "build",
         "-f",
-        "compose/production/django/Dockerfile",
+        "Dockerfile",
         "-t",
         "gcr.io/djangocutter-341220/djangocutter:latest",
         ".",
