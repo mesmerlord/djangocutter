@@ -14,8 +14,8 @@ ARG BUILD_ENVIRONMENT=production
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential \
-  python3-dev \
-  libmysqlclient-dev
+  libmariadb-dev \
+  python3-dev 
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
