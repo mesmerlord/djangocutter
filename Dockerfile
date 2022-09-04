@@ -13,7 +13,11 @@ ARG BUILD_ENVIRONMENT=production
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
-  build-essential 
+  build-essential \
+  libmysqlclient-dev \
+  build-base \
+  mysql-dev \
+  bash
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
@@ -44,10 +48,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
   libpq-dev \
   # Translations dependencies
-  gettext \
-  build-base \
-  mysql-dev \
-  bash \
+  gettext 
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
