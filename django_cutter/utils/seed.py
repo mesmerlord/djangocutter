@@ -5,3 +5,4 @@ def seed():
         set_instance = SetFactory.create_batch(size=100)
         workout_instance = WorkoutFactory.create_batch(size=100)
         exercise_instance = ExerciseFactory.create_batch(size=100)
+    
