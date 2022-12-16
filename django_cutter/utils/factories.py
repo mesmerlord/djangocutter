@@ -3,7 +3,7 @@ from django_cutter.fitness.models import Set, Workout, Exercise
 from django_cutter.users.tests.factories import UserFactory
 class SetFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'Set'
+        model = Set
 
     name = factory.Faker('word')
     reps = factory.Faker('random_int')
@@ -13,14 +13,14 @@ class SetFactory(factory.django.DjangoModelFactory):
 
 class WorkoutFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'Workout'
+        model = Workout
 
     name = factory.Faker('word')
     date = factory.Faker('date_this_decade')
 
 class ExerciseFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'Exercise'
+        model = Exercise
 
     name = factory.Faker('word')
     person = factory.SubFactory(UserFactory)
