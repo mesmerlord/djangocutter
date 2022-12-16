@@ -1,6 +1,6 @@
 import factory
 from django_cutter.fitness.models import Set, Workout, Exercise
-
+from django_cutter.users.tests.factories import UserFactory
 class SetFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'Set'
@@ -23,4 +23,4 @@ class ExerciseFactory(factory.django.DjangoModelFactory):
         model = 'Exercise'
 
     name = factory.Faker('word')
-    person = factory.SubFactory('users.UserFactory')
+    person = factory.SubFactory(UserFactory)
