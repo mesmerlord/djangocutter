@@ -22,5 +22,5 @@ class ExerciseFactory(factory.django.DjangoModelFactory):
         model = 'Exercise'
 
     name = factory.Faker('word')
-    sets = factory.SubFactory(SetFactory, workout=None)
+    sets = factory.SubFactory(SetFactory, workout=factory.SelfAttribute('..workout'))
     person = factory.SubFactory('users.UserFactory')
