@@ -1,5 +1,5 @@
 import factory
-from django_cutter.fitness.models import Set, Workout, Excercise
+from django_cutter.fitness.models import Set, Workout, Exercise
 
 class SetFactory(factory.django.DjangoModelFactory):
     class Meta:
