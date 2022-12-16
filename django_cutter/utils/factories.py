@@ -8,7 +8,7 @@ class SetFactory(factory.django.DjangoModelFactory):
     reps = factory.Faker('random_int')
     weight = factory.Faker('random_int')
     date = factory.Faker('date_this_decade')
-    workout = factory.SubFactory('utils.WorkoutFactory')
+    workout = factory.SubFactory('utils.seed.WorkoutFactory')
 
 class WorkoutFactory(factory.django.DjangoModelFactory):
     class Meta:
