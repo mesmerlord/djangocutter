@@ -1,16 +1,7 @@
 from .factories import SetFactory, WorkoutFactory, ExerciseFactory
 
 def seed():
-    sets = []
-    workouts = []
-    exercises = []
-    for _ in range(10000):
-        set_instance = SetFactory()
-        sets.append(set_instance)
-        workout_instance = WorkoutFactory()
-        workouts.append(workout_instance)
-        exercise_instance = ExerciseFactory()
-        exercises.append(exercise_instance)
-    Set.objects.bulk_create(sets, batch_size = 200)
-    Workout.objects.bulk_create(workouts, batch_size = 200)
-    Exercise.objects.bulk_create(exercises, batch_size = 200)
+    for _ in range(100):
+        set_instance = SetFactory.create_batch(size=100)
+        workout_instance = WorkoutFactory.create_batch(size=100)
+        exercise_instance = ExerciseFactory.create_batch(size=100)
