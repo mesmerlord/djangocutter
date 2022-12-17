@@ -1,6 +1,7 @@
 import factory
 from django_cutter.fitness.models import Set, Workout, Exercise
 from django_cutter.users.tests.factories import UserFactory
+
 class SetFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Set
