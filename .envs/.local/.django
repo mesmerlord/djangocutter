@@ -9,6 +9,7 @@ REDIS_URL=redis://redis:6379/0
 # Celery
 # ------------------------------------------------------------------------------
 DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_ADMIN_URL=admin/
 # Flower
 CELERY_FLOWER_USER=YeaTHyPXjzjOlnkbHtrWhjipJuYScPzp
 CELERY_FLOWER_PASSWORD=lPUSG35TXrIVxwsrAiVFl86VoizGO4pzrxGnMCveGyBIJeNdeHn15zGBWd2leyK7
