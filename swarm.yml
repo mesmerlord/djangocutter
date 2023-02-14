@@ -1,0 +1,105 @@
+version: "3"
+
+volumes:
+  # production_postgres_data: {}
+  # production_postgres_data_backups: {}
+  production_traefik: {}
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    image: django_cutter_production_django
+    platform: linux/x86_64
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
+    command: /start
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+      replicas: 3
+      placement:
+        constraints:
+          - node.role==worker
+
+  # postgres:
+  #   build:
+  #     context: .
+  #     dockerfile: ./compose/production/postgres/Dockerfile
+  #   image: django_cutter_production_postgres
+  #   volumes:
+  #     - production_postgres_data:/var/lib/postgresql/data:Z
+  #     - production_postgres_data_backups:/backups:z
+  #   env_file:
+  #     - ./.envs/.production/.postgres
+
+  traefik:
+    build:
+      context: .
+      dockerfile: ./compose/production/traefik/Dockerfile
+    image: django_cutter_production_traefik
+    depends_on:
+      - django
+    volumes:
+      - production_traefik:/etc/traefik/acme:z
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+      - "0.0.0.0:5555:5555"
+
+  redis:
+    image: redis:6
+
+  celeryworker:
+    <<: *django
+    image: django_cutter_production_celeryworker
+    command: /start-celeryworker
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+      replicas: 2
+      placement:
+        constraints:
+          - node.role==worker
+
+  celerybeat:
+    <<: *django
+    image: django_cutter_production_celerybeat
+    command: /start-celerybeat
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role==worker
+
+  flower:
+    <<: *django
+    image: django_cutter_production_flower
+    command: /start-flower
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+      replicas: 1
+      placement:
+        constraints:
+          - node.role==worker
+
+  # awscli:
+  #   build:
+  #     context: .
+  #     dockerfile: ./compose/production/aws/Dockerfile
+  #   env_file:
+  #     - ./.envs/.production/.django
+  #   volumes:
+  #     - production_postgres_data_backups:/backups:z

@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`djangocutter.xyz`) || Host(`www.djangocutter.xyz`)"
+      rule: "Host(`djangocutter.store`) || Host(`www.djangocutter.store`)"
       entryPoints:
         - web-secure
       middlewares:
@@ -42,7 +42,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: "Host(`djangocutter.xyz`)"
+      rule: "Host(`djangocutter.store`)"
       entryPoints:
         - flower
       service: flower
