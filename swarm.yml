@@ -11,7 +11,6 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     image: 127.0.0.1:5000/django_cutter_production_django
-    platform: linux/x86_64
     depends_on:
       # - postgres
       - redis
