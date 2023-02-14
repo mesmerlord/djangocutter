@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-    image: django_cutter_production_django
+    image: 127.0.0.1:5000/django_cutter_production_django
     platform: linux/x86_64
     depends_on:
       # - postgres
@@ -43,7 +43,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
-    image: django_cutter_production_traefik
+    image: 127.0.0.1:5000/django_cutter_production_traefik
     depends_on:
       - django
     volumes:
@@ -58,7 +58,7 @@ services:
 
   celeryworker:
     <<: *django
-    image: django_cutter_production_celeryworker
+    image: 127.0.0.1:5000/django_cutter_production_celeryworker
     command: /start-celeryworker
     deploy:
       resources:
@@ -71,7 +71,7 @@ services:
 
   celerybeat:
     <<: *django
-    image: django_cutter_production_celerybeat
+    image: 127.0.0.1:5000/django_cutter_production_celerybeat
     command: /start-celerybeat
     deploy:
       resources:
@@ -84,7 +84,7 @@ services:
 
   flower:
     <<: *django
-    image: django_cutter_production_flower
+    image: 127.0.0.1:5000/django_cutter_production_flower
     command: /start-flower
     deploy:
       resources:
