@@ -13,4 +13,4 @@ class QuickstartUser(HttpUser):
     
     @task
     def workout(self):
-        self.client.get("/workout/")
+        self.client.get("/workouts/")
